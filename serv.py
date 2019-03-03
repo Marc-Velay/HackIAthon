@@ -30,7 +30,7 @@ class HelloWorldExample(object):
 
         counter = Counter([r[0] for r in res])
         if len(name_list) > 1:
-            names = [name for name in counter if counter[name] > 1]
+            names = [name for name in counter if counter[name] == len(name_list)]
             res = [r for r in res if any(name in r for name in names)]
             strengths = [float(0)]*len(names)
             r_final = [0]*len(names)
