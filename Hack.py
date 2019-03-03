@@ -1,4 +1,4 @@
-# coding: utf-8 
+# coding: utf-8
 from tornado.ioloop import IOLoop
 from tornado.web import Application, RequestHandler
 import os.path
@@ -26,7 +26,7 @@ class SumHandler(RequestHandler):
 
 class Index(RequestHandler):
     def get(self):
-        dict1 = {"index1":True, "index2":True, "symptomes" : False, "pathologie":False} 
+        dict1 = {"index1":True, "index2":True, "symptomes" : False, "pathologie":False}
         self.render('test.htm',dict1=dict1)
 
 class Symptomes(RequestHandler):
@@ -49,7 +49,10 @@ def make_app():
         ("/add", SumHandler),
         ("/symptomes", Symptomes),
         ("/pathologie", Pathologie),
-        ("/feedback", Feedback)
+        ("/feedback", Feedback),
+        (r"/static/(.*)", tornado.web.StaticFileHandler, {
+            "path": "./images"
+        }),
         ]
     return Application(urls, debug=True)
 

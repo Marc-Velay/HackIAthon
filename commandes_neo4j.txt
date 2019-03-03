@@ -1,0 +1,16 @@
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/Marc-Velay/HackIAthon/master/ClasseurTRAIT.csv" AS csvLine  FIELDTERMINATOR ';'
+CREATE (t:Trait {id: toInteger(csvLine.TraitID), name: csvLine.TraitName, duration: csvLine.TraitDur, unit: csvLine.TraitUnit, type: csvLine.TraitType })
+
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/Marc-Velay/HackIAthon/master/ClasseurPAT.csv" AS csvLine  FIELDTERMINATOR ';'
+CREATE (p:Pat {id: toInteger(csvLine.PatID), name: csvLine.PatName, location: csvLine.PatLocation, phenotype: csvLine.PatPhenotype })
+
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/Marc-Velay/HackIAthon/master/ClasseurSYM.csv" AS csvLine  FIELDTERMINATOR ';'
+CREATE (s:Sym {id: toInteger(csvLine.SymID), name: csvLine.SymName })
+
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/Marc-Velay/HackIAthon/master/ClasseurLIEN-SymPatho.csv" AS csvLine  FIELDTERMINATOR ';'
+MATCH (s:Sym {id: toInteger(csvLine.SymID)}), (p:Pat {id: toInteger(csvLine.PatID)})
+CREATE (s)-[:Related_to { strength: csvLine.Strength}]->(p)
+
+LOAD CSV WITH HEADERS FROM "https://raw.githubusercontent.com/Marc-Velay/HackIAthon/master/LIEN-Path-Traitements.csv" AS csvLine  FIELDTERMINATOR ';'
+MATCH (p:Pat {id: toInteger(csvLine.PatID)}), (t:Trait {id: toInteger(csvLine.TraitID)})
+CREATE (p)-[:Healed_by { strength: csvLine.Strength}]->(t)
