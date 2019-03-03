@@ -1,0 +1,15 @@
+TraitName;TraitDur;TraitUnit;TraitType
+6 FEC 100;6 cycles;NA;Chimio
+Traztumab;3 semaine;NA;Therapie ciblee
+Letrozole;NA;NA;Hormonotherapie
+Doxorubicine;NA;NA;Chimio
+Mastectomie;NA;NA;Chirurgie
+Radiotherapie;30 seances;25 Gy;Rayonnement ionisant
+Dialyse;NA;NA;Invasif
+Insuline gliargine;NA;100 Ui/ml;Insulinotherapie
+Cefotaxime;NA;200mg/Kg;Antibiotherapie
+Ceftriaxone;NA;75mg/Kg;Antibiotherapie
+Prednisolone;NA;1g/Kg;Antinflammatoire
+Escitalopram;~1 an;NA;Antidepresseur
+Alprazolam;~5 ans;NA;Anxiolytique
+Tercian;4 a 6 semaines;25 a 100mg;Antipsychotique

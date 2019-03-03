@@ -1,0 +1,26 @@
+PatID;PatName;PatLocation;PatPhenotype
+1;Carcinome;Sein;Mucoepidermoide
+2;Carcinome;Sein;Squameux
+3;Carcinome;Sein;Pleomorphique
+4;Carcinome;Sein;Oncocyte
+5;Carcinome;Rein;Cellules claires
+6;Carcinome;Rein;Tubulo-papillaire
+7;Depression;Mental;Nevrose
+8;Hallucination auditive;Mental;Psychose
+9;Adenocarcinome;Poumon;NA
+10;Carcinome;Poumon;a grande cellules
+11;Adenocarcinome;Poumon;a grande cellules
+12;Diabete;Pancreas;Type 1
+13;Insuffisance cardiaque;C?ur;Hypertrophie ventriculaire gauche
+14;SCA;C?ur;ST+
+15;Meningite;Cerveau;Pneumocoque
+16;Meningite;Cerveau;Meningocoque
+17;Insuffisance renale;Rein;Aigue
+18;Engagement cerebral;Cerveau;NA
+19;Syphilis ;Cerveau;Stade Tertiaire
+20;RGO;ORL;Non-complique
+21;Grippe;ORL;Viral
+22;Angine;ORL;Bacterien
+23;Ulcere ;Intestin;Duodenal
+24;Otite;ORL;Bacterien
+25;Gonorrhee;Organes genitaux;Bacterien
