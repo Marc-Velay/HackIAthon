@@ -12,7 +12,11 @@ import socket
 from urllib.parse import urlparse
 from neo4j import GraphDatabase
 from collections import Counter
+sympto_select = "Leucopenie"
+patho_select = ["Meningite","Pneumocoque"]
 items = []
+items_patho = []
+items_traitement = []
 index = True
 symptomes = False
 pathologie = False
@@ -33,17 +37,22 @@ class Index(RequestHandler):
     def get(self):
         items = db.get_symptomes()
         print(items)
-        dict1 = {"index1":True, "index2":True, "symptomes" : False, "pathologie":False,"Symptome_list":items} 
+        dict1 = {"index1":True, "index2":True, "symptomes" : False, "pathologie":False,"Symptome_list":items,"Pathologie_list":[],"Traitements_list":[]} 
         self.render('test.htm',dict1=dict1)
 
 class Symptomes(RequestHandler):
     def get(self):
-        dict1 = {"index1":True, "index2":False, "symptomes" :True , "pathologie":False}
+        print(items)
+        items_patho = db.get_pathologies(sympto_select)
+        print(items_patho)
+        dict1 = {"index1":False, "index2":False, "symptomes" :True , "pathologie":False,"Symptome_list":items,"Pathologie_list":items_patho,"Traitements_list":[]}
         self.render('test.htm',dict1=dict1)
 
 class Pathologie(RequestHandler):
     def get(self):
-        dict1 = {"index1":True, "index2":False, "symptomes" :True , "pathologie":True, }
+        items_traitement = db.get_traitements(patho_select[0],patho_select[1])
+        print(items_traitement)
+        dict1 = {"index1":False, "index2":False, "symptomes" :True , "pathologie":True, "Symptome_list":items,"Pathologie_list":items_patho,"Traitements_list":items_traitement}
         self.render('test.htm',dict1=dict1)
 
 class Feedback(RequestHandler):
@@ -58,9 +67,9 @@ class HelloWorldExample(object):
     def close(self):
         self._driver.close()
 
-    def get_pathologies(self, name_list):
+    def get_pathologies(self, name):
         with self._driver.session() as session:
-            querry = session.write_transaction(self._get_pathologies, name_list)
+            querry = session.write_transaction(self._get_pathologies, name)
             return querry
 
     def get_symptomes(self):
@@ -68,6 +77,11 @@ class HelloWorldExample(object):
             querry = session.write_transaction(self._get_symptomes)
             return querry
 
+    def get_traitements(self,name,phenotype):
+        with self._driver.session() as session:
+            querry = session.write_transaction(self._get_traitements,name,phenotype)
+            return querry
+        
     @staticmethod
     def _get_symptomes(tx):
         res = []
@@ -76,27 +90,27 @@ class HelloWorldExample(object):
         return res
 
     @staticmethod
-    def _get_pathologies(tx, name_list):
+    def _get_pathologies(tx, name):
         res = []
-        for name in name_list:
-            for result in tx.run("MATCH (a:Sym)-[r]->(f) "
+        for result in tx.run("MATCH (a:Sym)-[r]->(f) "
                              "WHERE a.name = {name} "
                              "RETURN f.name, f.phenotype, r.strength", name=name):
-                res.append((result[0]+' '+result[1], result[2]))
-            counter = Counter([r[0] for r in res])
-            if len(name_list) > 1:
-                names = [name for name in counter if counter[name] == len(name_list)]
-                res = [r for r in res if any(name in r for name in names)]
-                strengths = [float(0)]*len(names)
-                r_final = [0]*len(names)
-                for r in res:
-                    fl = float(r[1].replace(',', '.'))
-                    if fl>strengths[names.index(r[0])]:
-                        strengths[names.index(r[0])] = fl
-                        r_final[names.index(r[0])] = range
-                    else:
-                        r_final = res
-                return r_final
+            res.append((result[0]+' '+result[1],result[0],result[1], result[2]))
+        counter = Counter([str(r[0]+' '+r[1]) for r in res])
+        r_final = res
+        print(r_final)
+        return r_final
+
+    @staticmethod
+    def _get_traitements(tx,name,phenotype):
+        res = []
+        for result in tx.run("MATCH (n:Pat{name: {name}, phenotype: {phenotype}})-[r:Healed_by]-(m)"
+                             "RETURN m.name,m.type, r.strength", name=name,phenotype=phenotype):
+            res.append((result[0]+' '+result[1], result[2]))
+        counter = Counter([r[0] for r in res])
+        r_final = res
+        print(r_final)
+        return r_final
             
     
 
@@ -117,5 +131,5 @@ def make_app():
 
 if __name__ == "__main__":
     app = make_app()
-    app.listen(8880)
+    app.listen(8884)
     IOLoop.current().start()

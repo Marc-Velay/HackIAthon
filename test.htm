@@ -9,11 +9,11 @@
         <form NAME="Choix">
             <div style="margin: auto; width: 50%;">
                 <p style="text-align:center">
-                    <label for="1">Symptome 1 :</label>
+                    <label for="1">Symptome:</label>
                     <select NAME="Liste" onChange="">
                         <option VALUE=""> Choisir un symptome
                             {% for new_item in dict1["Symptome_list"] %}
-                                <option VALUE=""> {{ new_item }}
+                               <option VALUE=""> {{ new_item }} 
                             {% end %}
                     </select>
                 </p>
@@ -31,9 +31,12 @@
         {% if dict1["symptomes"] %}
         <div>
             <form METHOD="get" ACTION="/pathologie">
-                <p style="text-align:center">Veuillez entrer la pathologie que vous pensez qu'il a :</p>
-                <input TYPE="submit" NAME="nom" VALUE="Valider">
-            </form>
+                <p style="margin: auto">Veuillez entrer la pathologie que vous pensez qu'il a :</p>
+                {% for new_item in dict1["Pathologie_list"] %}
+                    <input TYPE="submit" NAME="{{ new_item[0] }}" VALUE="{{ new_item[0] }}"> <br />
+                {% end %}
+                    
+    </form>
         </div>
         {% end %}
         </divstyle="margin:>
