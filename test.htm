@@ -1,0 +1,53 @@
+﻿<meta charset="utf-8" /> 
+<html>
+    <header>
+        <p style="text-align:center"><img src="images/logo.png" alt="logo de mon site" title="mon logo"/></p>
+    </header>
+    <body>
+        {% if dict1["index2"] %}
+        {{dict1["index2"]}}
+        <P>Veuillez entrer les symptomes que le patient a :</P>
+        <form NAME="Choix">
+            <div>
+                <label for="1">Symptome 1 :</label>
+                <select NAME="Liste" onChange="">
+                    <option VALUE="">Choisir un symptome
+                    <option VALUE="">A
+                    <option VALUE="">B
+                    <option VALUE="">C
+                    <option VALUE="">D
+                    <option VALUE="">E
+                </select>
+            </div>
+        </form>
+        {% end %}
+        {% if dict1["index2"] %}
+        <div>
+            <form METHOD="get" ACTION="/symptomes">
+                <input TYPE="submit" NAME="nom" VALUE="Valider">
+            </form>
+        </div>
+        {% end %}
+        {% if dict1["symptomes"] %}
+        <div>
+            <form METHOD="get" ACTION="/pathologie">
+                <P>Veuillez entrer la pathologie que vous pensez qu'il a :</P>
+                <input TYPE="submit" NAME="nom" VALUE="Valider">
+            </form>
+        </div>
+        {% end %}
+        </div>
+        {% if dict1["pathologie"] %}
+            <P>Voila la liste des traitements adaptes à cette situation :</P>
+            <div>
+                <P>Patate 1 : 95</P>
+                <P>Patate 2 : 88</P>
+                <P>Patate 3 : 75</P>
+            </div>
+            <P></P>
+            <FORM>
+                <INPUT TYPE="submit" NAME="nom" VALUE="Feedback">
+            </FORM>
+        {% end %}
+    </body>
+</html>
