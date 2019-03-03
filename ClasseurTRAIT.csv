@@ -1,15 +1,15 @@
-TraitName;TraitDur;TraitUnit;TraitType
-6 FEC 100;6 cycles;NA;Chimio
-Traztumab;3 semaine;NA;Therapie ciblee
-Letrozole;NA;NA;Hormonotherapie
-Doxorubicine;NA;NA;Chimio
-Mastectomie;NA;NA;Chirurgie
-Radiotherapie;30 seances;25 Gy;Rayonnement ionisant
-Dialyse;NA;NA;Invasif
-Insuline gliargine;NA;100 Ui/ml;Insulinotherapie
-Cefotaxime;NA;200mg/Kg;Antibiotherapie
-Ceftriaxone;NA;75mg/Kg;Antibiotherapie
-Prednisolone;NA;1g/Kg;Antinflammatoire
-Escitalopram;~1 an;NA;Antidepresseur
-Alprazolam;~5 ans;NA;Anxiolytique
-Tercian;4 a 6 semaines;25 a 100mg;Antipsychotique
+TraitID;TraitName;TraitDur;TraitUnit;TraitType
+1;6 FEC 100;6 cycles;NA;Chimio
+2;Traztumab;3 semaine;NA;Therapie ciblee
+3;Letrozole;NA;NA;Hormonotherapie
+4;Doxorubicine;NA;NA;Chimio
+5;Mastectomie;NA;NA;Chirurgie
+6;Radiotherapie;30 seances;25 Gy;Rayonnement ionisant
+7;Dialyse;NA;NA;Invasif
+8;Insuline gliargine;NA;100 Ui/ml;Insulinotherapie
+9;Cefotaxime;NA;200mg/Kg;Antibiotherapie
+10;Ceftriaxone;NA;75mg/Kg;Antibiotherapie
+11;Prednisolone;NA;1g/Kg;Antinflammatoire
+12;Escitalopram;~1 an;NA;Antidepresseur
+13;Alprazolam;~5 ans;NA;Anxiolytique
+14;Tercian;4 a 6 semaines;25 a 100mg;Antipsychotique
