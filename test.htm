@@ -1,53 +1,54 @@
-﻿<meta charset="utf-8" />
+﻿<meta charset="utf-8" /> 
 <html>
     <header>
-        <p style="text-align:center"><img src="/static/logo.png" alt="logo de mon site" title="mon logo"/></p>
+        <p style="text-align:center"><img src="/static/logo.png" alt="logo de mon site" title="mon logo" /></p>
     </header>
     <body>
-        {% if dict1["index2"] %}
-        {{dict1["index2"]}}
-        <P>Veuillez entrer les symptomes que le patient a :</P>
+        <div style="margin: auto; width: 50%;">
+        <p style="text-align:center">Veuillez entrer les symptomes que le patient a :</p>
         <form NAME="Choix">
-            <div>
-                <label for="1">Symptome 1 :</label>
-                <select NAME="Liste" onChange="">
-                    <option VALUE="">Choisir un symptome
-                    <option VALUE="">A
-                    <option VALUE="">B
-                    <option VALUE="">C
-                    <option VALUE="">D
-                    <option VALUE="">E
-                </select>
+            <div style="margin: auto; width: 50%;">
+                <p style="text-align:center">
+                    <label for="1">Symptome 1 :</label>
+                    <select NAME="Liste" onChange="">
+                        <option VALUE=""> Choisir un symptome
+                            {% for new_item in dict1["Symptome_list"] %}
+                                <option VALUE=""> {{ new_item }}
+                            {% end %}
+                    </select>
+                </p>
             </div>
         </form>
-        {% end %}
         {% if dict1["index2"] %}
         <div>
-            <form METHOD="get" ACTION="/symptomes">
-                <input TYPE="submit" NAME="nom" VALUE="Valider">
-            </form>
+            <p style= margin: 0 auto;>
+                <form METHOD="get" ACTION="/symptomes">
+                    <input TYPE="submit" NAME="nom" VALUE="Valider">
+                </form>
+            </p>
         </div>
         {% end %}
         {% if dict1["symptomes"] %}
         <div>
             <form METHOD="get" ACTION="/pathologie">
-                <P>Veuillez entrer la pathologie que vous pensez qu'il a :</P>
+                <p style="text-align:center">Veuillez entrer la pathologie que vous pensez qu'il a :</p>
                 <input TYPE="submit" NAME="nom" VALUE="Valider">
             </form>
         </div>
         {% end %}
-        </div>
+        </divstyle="margin:>
         {% if dict1["pathologie"] %}
-            <P>Voila la liste des traitements adaptes à cette situation :</P>
+            <p style="text-align:center";>Voila la liste des traitements adaptes à cette situation :</p>
             <div>
-                <P>Patate 1 : 95</P>
-                <P>Patate 2 : 88</P>
-                <P>Patate 3 : 75</P>
+                <p style="text-align:center">Patate 1 : 95</p>
+                <P style="text-align:center">Patate 2 : 88</P>
+                <p style="text-align:center">Patate 3 : 75</p>
             </div>
-            <P></P>
+            <p></p>
             <FORM>
                 <INPUT TYPE="submit" NAME="nom" VALUE="Feedback">
             </FORM>
         {% end %}
+        </div>
     </body>
 </html>

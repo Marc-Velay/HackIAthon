@@ -1,0 +1,50 @@
+<meta charset="utf-8" /> 
+<html>
+  <header>
+    <P style="text-align:center"><img src="../images/logo.png" alt="logo de mon site" title="mon logo"/></P>
+  </header>
+  <body>
+
+<c:when {{ dict1["index1"] }}>             
+<P>Veuillez entrer les symptomes que le patient a :</P>
+<FORM NAME="Choix">
+<DIV>
+<LABEL for="1">Symptome 1 :</LABEL>
+<SELECT NAME="Liste" onChange="">
+<OPTION VALUE="">Choisir un symptome
+<OPTION VALUE="">A
+<OPTION VALUE="">B
+<OPTION VALUE="">C
+<OPTION VALUE="">D
+<OPTION VALUE="">E
+</SELECT>
+</DIV>
+</FORM>
+</c:when>
+<c:when {{ dict1["index2"] }}>  </c:when>
+<c:otherwise>
+<FORM  METHOD="get" ACTION="/symptomes">
+<INPUT TYPE="submit" NAME="nom" VALUE="Valider">
+</FORM>
+</c:otherwise>
+</c:when>
+<c:when ${%symptomes%}">       
+<P>Veuillez entrer la pathologie que vous pensez qu'il a :</P>
+<INPUT TYPE="submit" NAME="nom" VALUE="Valider">
+</FORM>
+</c:when>
+<c:when ${%pathologie%}">       
+<P>Voila la liste des traitements adaptes à cette situation :</P>
+<DIV>
+<P>Patate 1 : 95</P>
+<P>Patate 2 : 88</P>
+<P>Patate 3 : 75</P>
+</DIV>
+</FORM>
+<P></P>
+<FORM>
+<INPUT TYPE="submit" NAME="nom" VALUE="Feedback">
+</FORM>
+</c:when>
+  </body>
+</html>
