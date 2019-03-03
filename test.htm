@@ -43,9 +43,9 @@
         {% if dict1["pathologie"] %}
             <p style="text-align:center";>Voila la liste des traitements adaptes à cette situation :</p>
             <div>
-                <p style="text-align:center">Patate 1 : 95</p>
-                <P style="text-align:center">Patate 2 : 88</P>
-                <p style="text-align:center">Patate 3 : 75</p>
+                {% for new_item in dict1["Traitements_list"] %}
+                    <input TYPE="submit" NAME="{{ new_item }}" VALUE="{{ new_item }}"> <br />
+                {% end %}
             </div>
             <p></p>
             <FORM>
